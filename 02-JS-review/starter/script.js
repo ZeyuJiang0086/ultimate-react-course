@@ -66,7 +66,7 @@ const data = [
     publicationDate: "1965-01-01",
     author: "Frank Herbert",
     genres: ["science fiction", "novel", "adventure"],
-    hasMovieAdaptation: true,
+    hasMovieAdaptation: false,
     pages: 658,
     translations: {
       spanish: "",
@@ -142,3 +142,56 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount;
+  return goodreads + librarything;
+}
+/*
+const books = getBooks();
+books;
+
+titles = books.map((book) => book.title);
+titles;
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalReviewCount(book),
+}));
+
+essentialData;
+
+const longBooksWithMovies = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBooksWithMovies;
+
+const adventureBooksTitles = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooksTitles;
+
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+pagesAllBooks;
+
+const arr = [3, 7, 1, 9, 6];
+const sorted = arr.slice().sort((a, b) => a - b);
+arr;
+sorted;
+
+const sortedByPages = books.slice().sort((book) => book.pages - book.pages);
+sortedByPages;
+
+const newBook = {
+  id: 6,
+  title: "test data",
+  author: "J. R. R. Tolkien",
+};
+*/
+
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+console.log("Jason");
